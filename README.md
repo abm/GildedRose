@@ -21,11 +21,11 @@ The Gilded Rose uses a payment processor (e.g., Stripe).
 
 - List items for sale
 
-  GET /items => IEnumerable<InventoriedItem>
+  GET /api/items => IEnumerable<InventoriedItem>
 
 - Buy an item
 
-  POST Order /purchases => PurchasedItem
+  POST Order /api/orders => OrderResult
 
 ## Contexts
 
@@ -49,5 +49,8 @@ Buy:  Clients <-> Ordering <-> Payment
 `PurchasedItem`: something a `Customer` has purchased
 `InventoriedItem`: an `Item` in the inventory; has an Id and Count
 `Customer`: a potential buyer; has an API key for making purchases; has a payment method established
-`OrderingSystem`: handles the potential purchase of Items
+`OrderProcessor`: handles the potential purchase of Items
+`Order`: a collection of items a customer wants to purchase
+`OrderResult`: the result of placing an `Order`
+`OrderItem`: an inventoried item that a customer wants to purchase
 `PaymentProcessor`: handles billing `Customer`s

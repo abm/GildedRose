@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,6 +28,16 @@ namespace GildedRose.Web
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            services
+                .AddAuthentication("TokenAuthentication")
+                .AddScheme<AuthenticationSchemeOptions, TokenAuthenticationHandler>("TokenAuthentication", null);
+
+            services.AddScoped<ITokenService>(service => new TokenService(new Dictionary<string, Customer>()
+            {
+                {"9A8BA13D14248", new Customer(Guid.NewGuid(), "Bankrupt Customer")},
+                {"11B89A1A3A826", new Customer(Guid.NewGuid(), "New Customer")},
+                {"E5E2C487F77BA", new Customer(Guid.NewGuid(), "Good Customer")}
+            }));
             services.AddSingleton<IInventory>(
                 Inventory.Build(new[] {
                     new InventoriedItem(
@@ -40,6 +51,8 @@ namespace GildedRose.Web
                     )
                 })
             );
+            services.AddScoped<IPaymentProcessor, PaymentProcessor>();
+            services.AddScoped<IOrderProcessor, OrderProcessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,8 +66,8 @@ namespace GildedRose.Web
             {
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
