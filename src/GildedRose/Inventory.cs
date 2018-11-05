@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GildedRose
 {
-    public class Inventory
+    public class Inventory : IInventory
     {
         private Dictionary<Guid, InventoriedItem> db;
 
@@ -11,6 +11,8 @@ namespace GildedRose
         {
             db = new Dictionary<Guid, InventoriedItem>();
         }
+
+        public IEnumerable<InventoriedItem> Items => db.Values;
 
         public static Inventory Build(IEnumerable<InventoriedItem> items)
         {

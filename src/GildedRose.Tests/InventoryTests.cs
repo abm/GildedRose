@@ -17,7 +17,7 @@ namespace GildedRose.Tests
                 Guid.NewGuid(),
                 new Item(
                     "Armenian Enamelled & Filigree Silver Holy Altar Box",
-                    " Armenia/Ottoman Turkey 18th-19th century; length: 7cm, width: 5.3cm, height: 2.6cm, weight: 61.45g",
+                    "Armenia/Ottoman Turkey 18th-19th century; length: 7cm, width: 5.3cm, height: 2.6cm, weight: 61.45g",
                     10000
                 ),
                 initialStock
@@ -38,7 +38,7 @@ namespace GildedRose.Tests
                 Guid.NewGuid(),
                 new Item(
                     "Armenian Enamelled & Filigree Silver Holy Altar Box",
-                    " Armenia/Ottoman Turkey 18th-19th century; length: 7cm, width: 5.3cm, height: 2.6cm, weight: 61.45g",
+                    "Armenia/Ottoman Turkey 18th-19th century; length: 7cm, width: 5.3cm, height: 2.6cm, weight: 61.45g",
                     10000
                 ),
                 initialStock
@@ -60,7 +60,7 @@ namespace GildedRose.Tests
                 Guid.NewGuid(),
                 new Item(
                     "Armenian Enamelled & Filigree Silver Holy Altar Box",
-                    " Armenia/Ottoman Turkey 18th-19th century; length: 7cm, width: 5.3cm, height: 2.6cm, weight: 61.45g",
+                    "Armenia/Ottoman Turkey 18th-19th century; length: 7cm, width: 5.3cm, height: 2.6cm, weight: 61.45g",
                     10000
                 ),
                 initialStock

@@ -26,6 +26,20 @@ namespace GildedRose.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddSingleton<IInventory>(
+                Inventory.Build(new[] {
+                    new InventoriedItem(
+                        Guid.NewGuid(),
+                        new Item(
+                            "Armenian Enamelled & Filigree Silver Holy Altar Box",
+                            "Armenia/Ottoman Turkey 18th-19th century; length: 7cm, width: 5.3cm, height: 2.6cm, weight: 61.45g",
+                            10000
+                        ),
+                        1
+                    )
+                })
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

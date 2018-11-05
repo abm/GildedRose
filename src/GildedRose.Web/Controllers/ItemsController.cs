@@ -7,12 +7,17 @@ namespace GildedRose.Web
     [ApiController]
     public class ItemsController : ControllerBase
     {
-        [HttpGet]
-        public ActionResult<IEnumerable<Item>> GetItems()
+        private IInventory inventory;
+
+        public ItemsController(IInventory inventory)
         {
-            return new[] {
-                new Item("Test", "Test", 10)
-            };
+            this.inventory = inventory;
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<InventoriedItem>> GetItems()
+        {
+            return Ok(inventory.Items);
         }
     }
 }
