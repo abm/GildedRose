@@ -12,11 +12,11 @@ using Xunit;
 
 namespace GildedRose.Web.Tests
 {
-    public class Integration : IClassFixture<WebApplicationFactory<Startup>>
+    public class ItemsIntegrationTests : IClassFixture<WebApplicationFactory<Startup>>
     {
         private readonly WebApplicationFactory<Startup> api;
 
-        public Integration(WebApplicationFactory<Startup> factory)
+        public ItemsIntegrationTests(WebApplicationFactory<Startup> factory)
         {
             api = factory;
         }
