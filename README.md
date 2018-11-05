@@ -72,11 +72,19 @@ Buy:  Clients <-> Ordering <-> Payment
 ## Models
 
 `Item`: something the Gilded Rose sells
+
 `PurchasedItem`: something a `Customer` has purchased
+
 `InventoriedItem`: an `Item` in the inventory; has an Id and Count
+
 `Customer`: a potential buyer; has an API key for making purchases; has a payment method established
+
 `OrderProcessor`: handles the potential purchase of Items
+
 `Order`: a collection of items a customer wants to purchase
+
 `OrderResult`: the result of placing an `Order`
+
 `OrderItem`: an inventoried item that a customer wants to purchase
+
 `PaymentProcessor`: handles billing `Customer`s
