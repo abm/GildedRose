@@ -15,6 +15,32 @@ method.
 
 The Gilded Rose uses a payment processor (e.g., Stripe).
 
+# Examples
+
+First, run the server, e.g.:
+
+`c:\projects\gilded-rose\src\GildedRose.Web>dotnet run`
+
+Then, get the items the Gilded Rose is selling:
+
+`curl https://localhost:5001/api/items -k`
+
+And finally, order something:
+
+`curl -H "Content-Type: application/json" -H "Authorization: Bearer E5E2C487F77BA" -X POST -d @order.json -k https://localhost:5001/api/orders`
+
+Where `order.json` is:
+
+```
+{
+  "customer": {
+    "id": "251ab349-1a86-4287-8a1f-0e2c60377f1f",
+    "name": "Good Customer"
+  },
+  "items": [{ "itemId": "bf222c45-dab5-4898-8a14-8cceea4c7f28", "count": 1 }]
+}
+```
+
 # Detailed Design
 
 ## API Workflows

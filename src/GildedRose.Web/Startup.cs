@@ -41,7 +41,7 @@ namespace GildedRose.Web
             services.AddSingleton<IInventory>(
                 Inventory.Build(new[] {
                     new InventoriedItem(
-                        Guid.NewGuid(),
+                        Guid.Parse("bf222c45-dab5-4898-8a14-8cceea4c7f28"),
                         new Item(
                             "Armenian Enamelled & Filigree Silver Holy Altar Box",
                             "Armenia/Ottoman Turkey 18th-19th century; length: 7cm, width: 5.3cm, height: 2.6cm, weight: 61.45g",

@@ -1,0 +1,7 @@
+{
+  "customer": {
+    "id": "251ab349-1a86-4287-8a1f-0e2c60377f1f",
+    "name": "Good Customer"
+  },
+  "items": [{ "itemId": "bf222c45-dab5-4898-8a14-8cceea4c7f28", "count": 1 }]
+}
