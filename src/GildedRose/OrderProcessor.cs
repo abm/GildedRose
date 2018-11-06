@@ -28,6 +28,19 @@ namespace GildedRose
                     $"We're out of the following: {string.Join(", ", outOfStock)}");
             }
 
+            var notEnoughStock = order.Items
+                .Where(item => inventory.RemainingStock(item.ItemId) < item.Count)
+                .Select(item => inventory.Items.Single(i => i.Id == item.ItemId).Item.Name);
+
+            if (notEnoughStock.Any())
+            {
+                return new CanceledOrder(
+                    Guid.NewGuid(),
+                    order,
+                    $"We're don't have enough of the following: {string.Join(", ", notEnoughStock)}");
+            }
+
+
             var paymentResult = payments.PayFor(order);
             switch (paymentResult)
             {
