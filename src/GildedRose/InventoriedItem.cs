@@ -22,6 +22,13 @@ namespace GildedRose
             return Count;
         }
 
+        public int ReduceStock(int count)
+        {
+            Count -= count;
+            if (Count < 0) Count = 0;
+            return Count;
+        }
+
         public override bool Equals(object obj)
         {
             return Equals(obj as InventoriedItem);

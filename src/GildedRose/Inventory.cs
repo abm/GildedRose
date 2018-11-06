@@ -46,6 +46,16 @@ namespace GildedRose
             return item;
         }
 
+        public InventoriedItem ReduceStock(Guid itemId, int count)
+        {
+            if (!db.ContainsKey(itemId))
+                throw new ArgumentException($"We have no record of {itemId}");
+
+            var item = db[itemId];
+            item.ReduceStock(count);
+            return item;
+        }
+
         public int RemainingStock(Guid itemId)
         {
             if (!db.ContainsKey(itemId))

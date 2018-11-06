@@ -41,6 +41,43 @@ namespace GildedRose.Web.Tests
         }
 
         [Fact]
+        public async Task BuyingSomethingReducesStock()
+        {
+            var item = new InventoriedItem(
+                Guid.NewGuid(),
+                new Item(
+                    "Armenian Enamelled & Filigree Silver Holy Altar Box",
+                    "Armenia/Ottoman Turkey 18th-19th century; length: 7cm, width: 5.3cm, height: 2.6cm, weight: 61.45g",
+                    10000
+                ),
+                1
+            );
+            var client = api.WithWebHostBuilder(builder =>
+                builder.ConfigureTestServices(services =>
+                    services.AddSingleton<IInventory>(
+                        Inventory.Build(new[] { item })
+                    )
+                )
+            ).CreateClient();
+            var order = new Order(
+                new Customer(Guid.NewGuid(), "Good Customer"),
+                new[] { new OrderItem(item.Id, 1) }
+            );
+
+            var json = JsonConvert.SerializeObject(order);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "E5E2C487F77BA");
+            var response = await client.PostAsync("/api/orders", content);
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+            // Order it again
+            response = await client.PostAsync("/api/orders", content);
+
+            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+        }
+
+        [Fact]
         public async Task GoodCustomer()
         {
             var item = new InventoriedItem(

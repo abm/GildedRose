@@ -32,6 +32,8 @@ namespace GildedRose
             switch (paymentResult)
             {
                 case PaymentResult.Successful:
+                    foreach (var item in order.Items)
+                        inventory.ReduceStock(item.ItemId, item.Count);
                     return new FulfilledOrder(Guid.NewGuid(), order);
                 case PaymentResult.OutOfFunds:
                     return new CanceledOrder(Guid.NewGuid(), order, "Insufficient funds");
